@@ -1,16 +1,18 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int>result;
-        for(int i=0; i< nums.size(); i++){
-            for(int j = 0; j< nums.size(); j++){
-                if((nums[i] + nums[j] == target) &&( i!=j)){
-                    result.push_back(i);
-                    result.push_back(j);
-                    return result;
-                }
+         map<int, int> occurence; 
+        // insert elements in random order 
+        for(int i =0; i<nums.size();i++){
+            int complement = target - nums[i];
+            //cout<< complement<< endl;
+            if(occurence.count(complement)>0){
+                //cout<<occurence.find(complement)->second<< " "<< i<<endl;
+                return vector<int>{(occurence.find(complement)->second), i};
             }
+            occurence.insert(pair<int, int>(nums[i], i));
+            //cout<<"Inserted: "<< nums[i]<<" "<< i<<endl;
         }
-        return result;
+        return vector<int>();
     }
 };
