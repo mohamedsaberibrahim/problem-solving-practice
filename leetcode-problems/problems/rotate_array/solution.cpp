@@ -17,5 +17,4 @@ public:
         reverse(nums, 0, k - 1);
         reverse(nums, k, nums.size() - 1);
     }
-
 };
